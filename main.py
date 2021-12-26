@@ -61,7 +61,6 @@ def run(event,context):
 
     #the next few lines perform the loading job to the big query table.
 
-    
     client = bigquery.Client()
 
     update_update_times(client,new_timestamp)
@@ -73,3 +72,4 @@ def run(event,context):
 
     job = client.load_table_from_dataframe(final_df,table_id,job_config)
     job.result()
+
