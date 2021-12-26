@@ -1,0 +1,38 @@
+api: http://api.coincap.io/v2/
+
+api_end_points:
+    historical: history?interval=
+
+api_assets:
+    bitcoin: assets/bitcoin/
+
+
+api_binance:
+    symbols: [BTCUSDT,ETHUSDT,SOLUSDT,XRPUSDT,DOGEUSDT,LUNAUSDT,ADAUSDT,AVAXUSDT]
+    interval: 15m
+    start_time: '2020-03-01 00:00:00'
+    end_time: '2021-12-22 23:50:00'
+
+cloud_storage:
+    etl_bucket: cryptohat_etl
+
+raw_data_schema:
+    open: float64
+    high: float64
+    low: float64
+    close: float64
+    volume: float64
+    coin: str
+    api_used: str
+    interval: str
+
+feature_transform:
+    window_periodicity: 'h'
+    window_sizes:
+        price_change_y: ['3','6','12','24']
+        price_change_x: ['2','2-4','4-6','6-12']
+        high_vs_low: ['2','2-4','4-6','6-12']
+        std: ['2','2-4','4-6','6-12']
+        ma_avg: [['5','10'],['10','30'],['30','50'],['50','100'],['100','200']]
+        volume: [['2','5'],['5','10'],['10','20'],['10','30']]
+                            
